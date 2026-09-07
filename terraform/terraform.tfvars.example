@@ -1,0 +1,27 @@
+environment      = "prod"
+location         = "westeurope"
+rg_name          = "rg-aks-private"
+aks_cluster_name = "aks-private"
+
+vnet_cidr       = ["10.10.0.0/16"]
+aks_subnet_cidr = ["10.10.1.0/24"]
+pe_subnet_cidr  = ["10.10.2.0/24"]
+
+# Required — private IP of your Azure Firewall / NVA. See
+# github.com/dwoitzik/azure-firewall-forced-tunneling if you don't have one yet.
+firewall_private_ip = "10.0.0.4"
+
+node_count   = 2
+node_vm_size = "Standard_D2s_v5"
+sku_tier     = "Free" # "Standard" for a production uptime SLA
+
+deploy_acr = true
+acr_name   = "acrprivateexample" # must be globally unique, no hyphens
+
+deploy_key_vault = true
+key_vault_name   = "kv-aks-private-example" # must be globally unique
+
+tags = {
+  environment = "prod"
+  managed_by  = "terraform"
+}
