@@ -33,6 +33,9 @@ jobs:
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v4
 
+      - name: Init TFLint plugins
+        run: tflint --init
+
       - name: TFLint
         run: tflint --chdir=.
 
